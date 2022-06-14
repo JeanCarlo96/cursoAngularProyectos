@@ -1,0 +1,51 @@
+<header>
+  <h1>Bienvenido a Repaso 1</h1>
+  <p>En este proyecto se trata de practicar lo aprendido como bases de Angular</p>
+</header>
+<section>
+  <hr/>
+  <h2>Ingreso de Vehículos</h2>
+  <p> Inrese los datos requeridos para crear un nuevo vehículo</p>
+  <div >
+    <label for="inputMarca">Marca: </label>
+    <input type="text" required id="inputMarca" [(ngModel)]="newVehiculo.marca">
+    <br/>
+    <label for="inputModelo">Modelo: </label>
+    <input type="text" required id="inputModelo" [(ngModel)]="newVehiculo.modelo">
+    <br/>
+    <label for="inputTipo">Tipo: </label>
+    <input type="text" required id="inputTipo" [(ngModel)]="newVehiculo.tipo">
+    <br/>
+    <label for="inputAnio">Año: </label>
+    <input type="number" required id="inputAnio" [(ngModel)]="newVehiculo.anio">
+    <br/>
+    <label for="inputPrecio">Precio: </label>
+    <input type="number" required id="inputPrecio" [(ngModel)]="newVehiculo.precio">
+    <br/>
+    <button type="button" (click)="agregarVehiculo()">Guardar</button>
+    <div *ngIf="mostrarMensaje">Registro Guardado Exitosamente</div>
+  </div>
+</section>
+<hr/>
+<section>
+  <h2>Catálogo de Vehículos</h2>
+  <p>A continuación mostramos todos nuestros Vehículo disponibles</p>
+  <ul>
+    <li *ngFor="let vehiculo of vehiculos; index as i">
+      <img [src]="vehiculo.imagen" width="300px">
+      <br/>
+      Marca: {{vehiculo.marca}}
+      <br/>
+      Modelo: {{vehiculo.modelo}}
+      <br/>
+      Tipo: {{vehiculo.tipo}}
+      <br/>
+      Año: {{vehiculo.anio}}
+      <br/>
+      Precio: {{vehiculo.precio}}
+      <br/>
+      <button (click)="quitarVehiculo(i)">Eliminar</button>
+    </li>
+  </ul>
+  <h3 *ngIf="vehiculos.length == 0">Sin Vehículos por el momento</h3>
+</section>
