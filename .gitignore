@@ -1,6 +1,0 @@
-/HolaMundo/node_modules
-/HolaMundo/.DS_STORE
-/HolaMundo/dist/
-/HolaMundo/bazel-out
-/HolaMundo/integration/bazel/bazel-*
-/HolaMundo/*.log
