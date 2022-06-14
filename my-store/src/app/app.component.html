@@ -1,0 +1,109 @@
+<h1>Propiedades</h1>
+<button [disabled]="btnDisabled">Enviar</button>
+<input type="text" [value]="framework.name">
+<progress max="100" [value]="framework.version"></progress>
+<img [src]="framework.img" width="100"/>
+<hr/>
+<h1>Hola Mundo</h1>
+<h2>{{'Hola Mundo'.repeat(5)}}</h2>
+<p>3 + 3 = {{3 + 3}}</p>
+<h3>Hola, soy {{name}} y tengo {{age}}</h3>
+<img src={{img}} alt="Imagen de Angular" width="500px">
+<h3>Datos de Persona</h3>
+<br/>
+<p>Nombre: {{persona1.name}}</p>
+<p>Apellido: {{persona1.lastname}}</p>
+<p>Edad: {{persona1.age}}</p>
+
+<h3>Lista de Personas</h3>
+<br/>
+<p>Persona 1</p>
+<p>Id: 1</p>
+<p>Nombre: {{personas[0].name}}</p>
+<p>Apellido: {{personas[0].lastname}}</p>
+<p>Edad: {{personas[0].age}}</p>
+<br/>
+<p>Persona 2</p>
+<p>Id: 2</p>
+<p>Nombre: {{personas[1].name}}</p>
+<p>Apellido: {{personas[1].lastname}}</p>
+<p>Edad: {{personas[1].age}}</p>
+<hr/>
+<h1>Eventos</h1>
+<button (click)="toggleButton()">Toggle Button</button>
+<button [disabled]="btnDisabledClick">Clickeame</button>
+<p>Edad: {{framework.version}}</p>
+<button (click)="subirVersion()">Version ++</button>
+<progress max="100" [value]="framework.version"></progress>
+<div class="box" (scroll)="onScroll($event)">
+  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam incidunt, ullam eligendi harum aut blanditiis. Mollitia debitis excepturi, placeat cum, rem minima quidem fugiat dolorum maiores harum earum, recusandae eligendi ad at vero unde esse omnis corrupti nam rerum iste voluptatem laboriosam. Sapiente pariatur quas eligendi, nobis repudiandae corporis rem culpa aperiam sit eius neque rerum veritatis consequatur nisi dolores molestias facilis, itaque sequi voluptatum cumque odio asperiores placeat cum! Doloribus, amet repellendus itaque voluptates pariatur, laboriosam quia, vero velit tempora magnam soluta fuga hic rem eum nulla distinctio. Quas incidunt tenetur animi iure voluptas. Animi sunt ducimus voluptates alias!</p>
+</div>
+<input type="text" [value]="persona1.lastname" (keyup)="changeName($event)">
+<p>Nombre: {{persona1.lastname}}</p>
+<hr/>
+<h1>NgModel</h1>
+<p>Precio: {{precio}}</p>
+<input type="text" required #nameInput="ngModel" [(ngModel)]="precio">
+<p>Valid: {{nameInput.valid}}</p>
+<p>Edad: {{age}}</p>
+<input type="number" max="18" min="10" required #ageInput="ngModel" [(ngModel)]="age">
+<p>Valid: {{ageInput.valid}}</p>
+<hr/>
+<h1>*ngIf</h1>
+<input type="text" [(ngModel)]="persona1.name">
+<input type="number" [(ngModel)]="persona1.age">
+<p *ngIf="persona1.name === 'Nicolas'; else elseBlock">Hola Nicolas</p>
+<p *ngIf="persona1.name === 'Jean' && persona1.age >= 18">Hola Jean Carlo Marchesini y eres mayor de edad</p>
+<ng-template #elseBlock>
+  <p>Bloque de else</p>
+</ng-template>
+<hr/>
+<h1>*ngFor</h1>
+<p>Impresión de Nombres</p>
+<button (click)="addName()">Add Name</button>
+<input type="text" required [(ngModel)]="newName">
+<ul>
+  <li *ngIf="names.length === 0">No hay nombres</li>
+  <li *ngFor="let name of names; index as i">
+    {{ i + 1 }} {{ name }}
+    <button (click)="deleteName(i)">Delete</button>
+  </li>
+</ul>
+<hr/>
+<h1>Repaso *ngFor</h1>
+<ul>
+  <label for="inputMarca">Ingrese una marca de carros: </label>
+  <input id="inputMarca" type="text" [(ngModel)]="nuevaMarca">
+  <button (click)="agregarMarca()"> Agregar Marca</button>
+  <li *ngFor="let marca of marcasAutos; index as i">
+    {{ i + 1 }} {{ marca }}
+    <button (click)="elimnarMarca(i)">Eliminar</button>
+  </li>
+</ul>
+<hr/>
+<h1>*ngFor con Objetos</h1>
+<div>
+  <div *ngFor="let product of products">
+    <img [src]="product.image" alt="imagen del producto" width="300px">
+    <h2>{{product.price}}</h2>
+    <p>{{product.name}}</p>
+  </div>
+</div>
+<hr/>
+<h1>ngSwitch</h1>
+<label for="inputNombre">Ingrese un nombre: </label>
+<input type="text" id="inputNombre" [(ngModel)]="valorInputNombre">
+<div [ngSwitch]="valorInputNombre">
+  <p *ngSwitchCase="'Jean'">
+    Su nombre es Jean Carlo Marchesini
+  </p>
+  <p *ngSwitchCase="'Giss'">
+    Su nombre es Gissela Estefanía Sangoquiza
+  </p>
+  <p *ngSwitchCase="'Jonathan'">
+    Su nombre es Jonathan Alfonso Morocho
+  </p>
+  <p *ngSwitchDefault>
+    No hace match con ninguno
+  </p>
+</div>
