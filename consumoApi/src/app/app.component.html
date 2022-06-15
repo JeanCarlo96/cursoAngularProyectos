@@ -1,0 +1,41 @@
+<header>
+  <h1>Consumo del API de Datos Abiertos</h1>
+</header>
+<section>
+  <h2>Búsqueda de procesos de contratación por medio de palabra clave</h2>
+  <p>En este proyecto se tratará de consumir el API de Datos Abiertos. EndPoint: https://datosabiertos.compraspublicas.gob.ec/PLATAFORMA/api/search_ocds</p>
+</section>
+<hr/>
+<section>
+  <h2>Parámetros de Consulta</h2>
+  <label>Search: </label>
+  <input type="text" [(ngModel)]="newYear">
+  <button (click)="addYear()">Agregar</button>
+  <button (click)="cleanYear()">Borrar</button>
+  <br/>
+  <p *ngIf="years.length > 0">Años Agregados:</p>
+  <ul *ngFor="let year of years">
+    <li>{{ year  }}</li>
+  </ul>
+  <p *ngIf="years.length == 0">Ningún search agregado</p>
+</section>
+<hr/>
+<section *ngIf="years.length > 0">
+  <button (click)="consumirApiYear()">Consultar API</button>
+</section>
+<section *ngIf="respuestaApi == true">
+  <table border="1px">
+    <thead>
+      <td>Total</td>
+      <td>Page</td>
+      <td>Pages</td>
+    </thead>
+    <tbody>
+      <tr *ngFor="let year of respYears; index as i">
+        <td>{{ year.total }}</td>
+        <td>{{ year.page }}</td>
+        <td>{{ year.pages }}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
