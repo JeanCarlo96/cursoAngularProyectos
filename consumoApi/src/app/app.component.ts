@@ -9,51 +9,58 @@ import { Search, Datum } from './app.model';
 export class AppComponent {
 
 // endpoint
-endpoint = 'https://datosabiertos.compraspublicas.gob.ec/PLATAFORMA/api/search_ocds?year=2020&';
+endpoint = 'https://datosabiertos.compraspublicas.gob.ec/PLATAFORMA/api/search_ocds?';
 
 // Variables de interés para el endpoint
 newYear = '';
-years: string[] = [];
+newSearch = '';
+searchs: string[] = [];
+years: string[] =[];
 respuestaApi: boolean = false;
 respTotal: number = 0;
 respPage: number = 0;
 respPages: number = 0;
 
 // Variable que almacene el conjunto de datos de respuesta de varios años
-respYears: Search[] = [
-  {
-  total: 0,
-  page: 0,
-  pages: 0,
-  }
-];
+respSearchs: Search[] = [];
 
-// Método que lipie el input del año
+// Método que limpie el input de year
 cleanYear(){
   this.years = [];
+  this.respuestaApi = false;
+}
+
+// Método que limpie el input del search
+cleanSearch(){
+  this.searchs = [];
   this.respuestaApi = false;
 }
 
 // Método que me permita agregar un año a la lista
 addYear(){
   if(this.newYear === ''){
-    alert('Debe ingresar un año antes de agregar');
+    alert('Debe ingresar un year antes de agregar');
   }else {
-    this.respYears = [
-      {
-      total: 0,
-      page: 0,
-      pages: 0,
-      }
-    ];
+    this.respSearchs = [];
     this.years.push(this.newYear);
     this.newYear = '';
   }
 }
 
+// Método que me permita agregar un search a la lista
+addSearch(){
+  if(this.newSearch === ''){
+    alert('Debe ingresar un search antes de agregar');
+  }else {
+    this.respSearchs = [];
+    this.searchs.push(this.newSearch);
+    this.newSearch = '';
+  }
+}
+
 // Método que permita comprobar que el año ingresado es correcto
-validYear(): boolean{
-  let newYearNumber = Number(this.newYear);
+validSearch(): boolean{
+  let newYearNumber = Number(this.newSearch);
   if(newYearNumber >= 2015 && newYearNumber <= 2022){
     return true;
   }else{
@@ -63,21 +70,20 @@ validYear(): boolean{
 
 // Método que permita consultar el API
 consumirApiYear(){
+  this.respSearchs = [];
   for(let year of this.years){
-    // Fetch
-  fetch(this.endpoint + 'search=' + year)
-  .then(response => response.json())
-  .then(data => {
-    // Casteando la respuesta
-    let year = data as Search;
-    //console.log(year.data);
-    //this.respTotal = year.total;
-    //this.respPage = year.page;
-    //this.respPages = year.pages;
-    this.respYears.push(year);
-  })
-  .catch(err => console.log(err));
+    for(let search of this.searchs){
+      // Fetch
+      fetch(this.endpoint + 'year=' + year + '&' + 'search=' + search)
+      .then(response => response.json())
+      .then(data => {
+        // Casteando la respuesta
+        let year = data as Search;
+        this.respSearchs.push(year);
+      })
+      .catch(err => console.log(err));
 
+    }
   }
 
   // Activar la tabla

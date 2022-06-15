@@ -8,20 +8,32 @@
 <hr/>
 <section>
   <h2>Parámetros de Consulta</h2>
-  <label>Search: </label>
-  <input type="text" [(ngModel)]="newYear">
+  <label>Year: </label>
+  <input type="number" min="2015" max="2022" [(ngModel)]="newYear">
   <button (click)="addYear()">Agregar</button>
   <button (click)="cleanYear()">Borrar</button>
   <br/>
-  <p *ngIf="years.length > 0">Años Agregados:</p>
+  <br/>
+  <p *ngIf="years.length > 0">Years Agregados:</p>
   <ul *ngFor="let year of years">
-    <li>{{ year  }}</li>
+    <li>{{ year }}</li>
   </ul>
-  <p *ngIf="years.length == 0">Ningún search agregado</p>
+  <p *ngIf="searchs.length == 0">Ningún year agregado</p>
+  <label>Search: </label>
+  <input type="text" [(ngModel)]="newSearch">
+  <button (click)="addSearch()">Agregar</button>
+  <button (click)="cleanSearch()">Borrar</button>
+  <br/>
+  <p *ngIf="searchs.length > 0">Search Agregados:</p>
+  <ul *ngFor="let search of searchs">
+    <li>{{ search }}</li>
+  </ul>
+  <p *ngIf="searchs.length == 0">Ningún search agregado</p>
 </section>
 <hr/>
-<section *ngIf="years.length > 0">
+<section *ngIf="searchs.length > 0">
   <button (click)="consumirApiYear()">Consultar API</button>
+  <br/>
 </section>
 <section *ngIf="respuestaApi == true">
   <table border="1px">
@@ -29,12 +41,32 @@
       <td>Total</td>
       <td>Page</td>
       <td>Pages</td>
+      <td>Data</td>
     </thead>
     <tbody>
-      <tr *ngFor="let year of respYears; index as i">
-        <td>{{ year.total }}</td>
-        <td>{{ year.page }}</td>
-        <td>{{ year.pages }}</td>
+      <tr *ngFor="let search of respSearchs; index as i">
+        <td>{{ search.total }}</td>
+        <td>{{ search.page }}</td>
+        <td>{{ search.pages }}</td>
+        <td>
+          <ul *ngFor="let data of search.data">
+            <li>{{data.id}}</li>
+            <li>{{data.ocid}}</li>
+            <li>{{data.year}}</li>
+            <li>{{data.month}}</li>
+            <li>{{data.method}}</li>
+            <li>{{data.internal_type}}</li>
+            <li>{{data.locality}}</li>
+            <li>{{data.region}}</li>
+            <li>{{data.suppliers}}</li>
+            <li>{{data.buyer}}</li>
+            <li>{{data.amount}}</li>
+            <li>{{data.date}}</li>
+            <li>{{data.title}}</li>
+            <li>{{data.description}}</li>
+            <li>{{data.budget}}</li>
+          </ul>
+        </td>
       </tr>
     </tbody>
   </table>

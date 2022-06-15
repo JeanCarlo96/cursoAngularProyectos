@@ -5,7 +5,7 @@
   total: number;
   page:  number;
   pages: number;
-  data?:  Datum[];
+  data:  Datum[];
 }
 
 export interface Datum {
