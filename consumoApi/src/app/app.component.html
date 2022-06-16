@@ -7,36 +7,41 @@
 </section>
 <hr/>
 <section>
-  <h2>Parámetros de Consulta</h2>
-  <label>Year: </label>
-  <input type="number" min="2015" max="2022" [(ngModel)]="newYear">
-  <button (click)="addYear()">Agregar</button>
-  <button (click)="cleanYear()">Borrar</button>
-  <br/>
-  <br/>
-  <p *ngIf="years.length > 0">Years Agregados:</p>
-  <ul *ngFor="let year of years">
-    <li>{{ year }}</li>
-  </ul>
-  <p *ngIf="searchs.length == 0">Ningún year agregado</p>
-  <label>Search: </label>
-  <input type="text" [(ngModel)]="newSearch">
-  <button (click)="addSearch()">Agregar</button>
-  <button (click)="cleanSearch()">Borrar</button>
-  <br/>
-  <p *ngIf="searchs.length > 0">Search Agregados:</p>
-  <ul *ngFor="let search of searchs">
-    <li>{{ search }}</li>
-  </ul>
-  <p *ngIf="searchs.length == 0">Ningún search agregado</p>
+  <div class="row">
+    <div class="col-lg-4">
+      <h2>Parámetros de Consulta</h2>
+      <label class="label">Year: </label>
+      <input type="number" min="2015" max="2022" [(ngModel)]="newYear" class="input">
+      <button (click)="addYear()" class="btn btn-primary">Agregar</button>
+      <button (click)="cleanYear()" class="btn btn-secondary">Borrar</button>
+      <br />
+      <br />
+      <ul *ngFor="let year of years" class="ul list-group">
+        <li class="list-group-item active" aria-current="true">Year Agregado</li>
+        <li class="list-group-item">{{ year }}</li>
+      </ul>
+      <p *ngIf="years.length == 0">Ningún year agregado</p>
+      <label class="label">Search: </label>
+      <input type="text" [(ngModel)]="newSearch" class="input">
+      <button (click)="addSearch()" class="btn btn-primary">Agregar</button>
+      <button (click)="cleanSearch()" class="btn btn-secondary">Borrar</button>
+      <br />
+      <ul *ngFor="let search of searchs" class="list-group">
+        <li class="list-group-item active" aria-current="true">Search Agregado</li>
+        <li class="list-group-item">{{ search }}</li>
+      </ul>
+      <p *ngIf="searchs.length == 0">Ningún search agregado</p>
+    </div>
+  </div>
 </section>
 <hr/>
-<section *ngIf="searchs.length > 0">
-  <button (click)="consumirApiYear()">Consultar API</button>
+<section *ngIf="searchs.length > 0 && years.length > 0">
+  <button (click)="consumirApiYear()" class="btn btn-success">Consultar API</button>
   <br/>
 </section>
+<hr/>
 <section *ngIf="respuestaApi == true">
-  <table border="1px">
+  <table class="table table-striped table-bordered">
     <thead>
       <td>Total</td>
       <td>Page</td>
@@ -49,22 +54,22 @@
         <td>{{ search.page }}</td>
         <td>{{ search.pages }}</td>
         <td>
-          <ul *ngFor="let data of search.data">
-            <li>{{data.id}}</li>
-            <li>{{data.ocid}}</li>
-            <li>{{data.year}}</li>
-            <li>{{data.month}}</li>
-            <li>{{data.method}}</li>
-            <li>{{data.internal_type}}</li>
-            <li>{{data.locality}}</li>
-            <li>{{data.region}}</li>
-            <li>{{data.suppliers}}</li>
-            <li>{{data.buyer}}</li>
-            <li>{{data.amount}}</li>
-            <li>{{data.date}}</li>
-            <li>{{data.title}}</li>
-            <li>{{data.description}}</li>
-            <li>{{data.budget}}</li>
+          <ul *ngFor="let data of search.data" class="list-group">
+            <li class="list-group-item">{{data.id}}</li>
+            <li class="list-group-item">{{data.ocid}}</li>
+            <li class="list-group-item">{{data.year}}</li>
+            <li class="list-group-item">{{data.month}}</li>
+            <li class="list-group-item">{{data.method}}</li>
+            <li class="list-group-item">{{data.internal_type}}</li>
+            <li class="list-group-item">{{data.locality}}</li>
+            <li class="list-group-item">{{data.region}}</li>
+            <li class="list-group-item">{{data.suppliers}}</li>
+            <li class="list-group-item">{{data.buyer}}</li>
+            <li class="list-group-item">{{data.amount}}</li>
+            <li class="list-group-item">{{data.date}}</li>
+            <li class="list-group-item">{{data.title}}</li>
+            <li class="list-group-item">{{data.description}}</li>
+            <li class="list-group-item">{{data.budget}}</li>
           </ul>
         </td>
       </tr>
