@@ -1,0 +1,71 @@
+<header>
+  <div>
+    <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">ErikaNet</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Acerca de Nosotros</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled">Contactos</a>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Ingrese Producto" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div>
+    <h1 class="text-center">Formulario de Registro</h1>
+  </div>
+</header>
+<hr />
+<section class="formulario">
+  <form #formularioRegistro="ngForm" (ngSubmit)="onRegister()">
+    <div class="mb-3">
+      <label for="name" class="form-label">Nombre</label>
+      <input type="text" class="form-control" id="name" name="name" [(ngModel)]="registerForm.name" required
+        #inputNombre="ngModel">
+      <p class="mensaje" [class.error]="inputNombre.invalid" *ngIf="registerForm.name.length === 0">Campo Nombre Obligatorio</p>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Correo Electrónico</label>
+      <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"
+        [(ngModel)]="registerForm.email" required #inputMail="ngModel">
+      <div *ngIf="registerForm.email.length > 0" id="emailHelp" class="form-text">Nunca compartiremos el correo
+        electrónico con nadie</div>
+      <p class="mensaje" [class.error]="inputMail.invalid" *ngIf="registerForm.email.length === 0">Campo Correo Obligatorio</p>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" name="password" [(ngModel)]="registerForm.password"
+        required #inputPass="ngModel">
+      <p class="mensaje" [class.error]="inputPass.invalid" *ngIf="registerForm.password.length === 0">Campo Password Obligatorio</p>
+    </div>
+    <button [disabled]="formularioRegistro.invalid" type="submit" class="btn btn-primary">Registrar</button>
+    <button (click)="clear()" type="button" class="btn btn-success">Limpiar</button>
+  </form>
+</section>
+<hr/>
+<section *ngIf="isCreate">
+  <div class="card" style="width: 18rem;">
+    <img src="{{cardImage}}" class="card-img-top" alt="Imagen referencial">
+    <div class="card-body">
+      <h5 class="card-title">{{newName}}</h5>
+      <p class="card-text">{{newMail}}</p>
+      <a href="https://www.xvideos.com/" class="btn btn-primary">Ver Perfil</a>
+    </div>
+  </div>
+</section>
