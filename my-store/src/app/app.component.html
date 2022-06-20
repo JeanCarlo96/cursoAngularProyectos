@@ -82,7 +82,7 @@
 </ul>
 <hr/>
 <h1>*ngFor con Objetos</h1>
-<div>
+<div class="products--grid">
   <div *ngFor="let product of products">
     <img [src]="product.image" alt="imagen del producto" width="300px">
     <h2>{{product.price}}</h2>
@@ -107,3 +107,70 @@
     No hace match con ninguno
   </p>
 </div>
+<hr/>
+
+<h1>Clases y Estilos</h1>
+<input type="text" #nameInput2="ngModel" [(ngModel)]="persona2.name" required>
+<p class="message-error" [class.invalid]="nameInput2.invalid">El campo es requerido</p>
+<input type="text" #nameInput3="ngModel" placeholder="Ingrese su nombre" maxlength="12" [(ngModel)]="nombreValido" required>
+<p class="message-error" [class.invalid]="nameInput3.invalid">Repaso de Campo Requerido</p>
+<label>Nombre</label>
+<input type="text" required #nameInput4="ngModel" [(ngModel)]="persona1.name">
+<p [style.font-style]="nameInput4.invalid ? 'italic' : 'normal'">Texto Texto Texto</p>
+<div class="stylesImg">
+  <div>
+    <input type="text" #nameInput5="ngModel" [(ngModel)]="widthImg">
+  </div>
+  <div>
+    <img [style.width.px]="widthImg" [src]="imgYoutube">
+  </div>
+</div>
+<hr>
+<h1>ngClass</h1>
+<label>País: </label>
+<input type="text" required [(ngModel)]="pais" #nameInput6="ngModel">
+<hr class="line-error"
+  [ngClass]="{
+    'valid': nameInput6.valid,
+    'invalid': nameInput6.invalid
+  }"
+/>
+<p class="message-pais" [class.fail]="nameInput6.invalid">El campo País es requerido</p>
+<hr/>
+<h1>ngStyle</h1>
+<div>
+  <div>
+    <input type="number" [(ngModel)]="box.width">
+    <input type="number" [(ngModel)]="box.height">
+    <input type="color" [(ngModel)]="box.background">
+  </div>
+  <div class="stylesImg">
+    <div [ngStyle]="{
+      'width.px': box.width,
+      'height.px': box.height,
+      'background-color': box.background,
+      'display': 'block'
+    }"></div>
+  </div>
+</div>
+<hr/>
+<h1>Formulario</h1>
+<form (ngSubmit)="onRegister()" #myForm="ngForm">
+  <div class="input-group">
+    <label for="name">Nombre: </label>
+    <input type="text" id="name" name="nombre" [(ngModel)]="register.name" required>
+    <p>Mensajes de Error</p>
+  </div>
+  <div class="input-group">
+    <label for="correo">Correo: </label>
+    <input type="email" id="correo" name="correo" [(ngModel)]="register.email" required>
+    <p>Mensaje de Error</p>
+  </div>
+  <div class="input-group">
+    <label for="password">Password: </label>
+    <input type="password" id="password" name="pass" [(ngModel)]="register.password" required>
+    <p>Mensaje de Error</p>
+  </div>
+  <button [disabled]="myForm.invalid" type="submit">Registrar</button>
+  <button type="button">Limpiar</button>
+</form>
