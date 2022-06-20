@@ -1,0 +1,15 @@
+<header>
+  <h1 class="instrucciones text-center">Bienvenidos al App de Dados</h1>
+  <h3 class="instrucciones">Instrucciones:</h3>
+  <p class="instrucciones">Precione el botón tirar dados hasta que le salgan los dos iguales. Mucha Suerte!!!</p>
+</header>
+<div class="jumbotron text-center">
+  <button class="btn btn-success btn-lg" (click)="tirarDados()">Tirar Dados</button>
+  <br>
+  <img class="img" [src]="dadoIzquierda">
+  <img class="img" [src]="dadoDerecha">
+  <br>
+  <h3 *ngIf="intentos > 0" class="tiros"># De Intentos: {{intentos}}</h3>
+  <br>
+  <h1 *ngIf="numero1 === numero2"><span class="badge badge-success">Ganaste al inteto {{intentos}}</span></h1>
+</div>
