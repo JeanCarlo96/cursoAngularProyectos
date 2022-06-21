@@ -1,0 +1,4 @@
+<img [src]="valorPadre" alt="imagen" width="200" *ngIf="valorPadre; else elseImg">
+<ng-template #elseImg>
+  <img src="./assets/images/default.jpg" width="200">
+</ng-template>
