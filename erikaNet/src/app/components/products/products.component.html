@@ -1,0 +1,27 @@
+<p>
+  Productos Agregados: {{myShoppingCar.length}}
+</p>
+<p>
+  Total: ${{ total }}
+</p>
+<p>
+  Today: {{ today | date: 'short' }}
+</p>
+<p>
+  Other Date: {{ date | date: 'yyyy - MMMM - d'  }}
+</p>
+<p>
+  {{ 'Hola COMo EStaS' | uppercase}}
+</p>
+<p>
+  {{ 'Jean Carlo Marchesini Antamba' | reverse }}
+</p>
+<p>
+  Time Ago: {{ date | timeAgo }}
+</p>
+<p>
+  Letras en Números: {{ 'Jean Carlo Marchesini Antamba' | transformVowels }}
+</p>
+<div class="products--grid">
+  <app-product [product]="product" *ngFor="let product of products" (addedProduct)="onAddToShoppingCar($event)"></app-product>
+</div>
